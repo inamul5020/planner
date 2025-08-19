@@ -1,0 +1,71 @@
+{
+ "custom": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "fields": [
+  {
+   "fieldname": "month",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Month (YYYY-MM)",
+   "reqd": 1
+  },
+  {
+   "default": 0,
+   "fieldname": "total_cash_collection",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Staff Collected Cash"
+  },
+  {
+   "default": 0,
+   "fieldname": "total_bank_collection",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Staff Collected Bank"
+  },
+  {
+   "default": 0,
+   "fieldname": "cash_in_hand",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Company Cash In Hand"
+  },
+  {
+   "default": 0,
+   "fieldname": "bank_balance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Company Bank Balance"
+  },
+  {
+   "default": 0,
+   "fieldname": "total_expense",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Expense"
+  },
+  {
+   "default": 0,
+   "fieldname": "carry_forward",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Carry Forward"
+  },
+  {
+   "default": 0,
+   "fieldname": "net_profit",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Net Profit"
+  }
+ ],
+ "module": "Planner",
+ "name": "Monthly Summary",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

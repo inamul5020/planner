@@ -1,0 +1,36 @@
+{
+ "custom": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "fields": [
+  {
+   "fieldname": "package_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Package Name",
+   "reqd": 1
+  },
+  {
+   "default": 0,
+   "fieldname": "register_fee",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Register Fee"
+  },
+  {
+   "default": 0,
+   "fieldname": "monthly_fee",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Monthly Fee"
+  }
+ ],
+ "module": "Planner",
+ "name": "Lak Package",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

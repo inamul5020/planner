@@ -1,0 +1,71 @@
+{
+ "custom": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "fields": [
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "register_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Register Date"
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "device1",
+   "fieldtype": "Data",
+   "label": "Device 1"
+  },
+  {
+   "fieldname": "device2",
+   "fieldtype": "Data",
+   "label": "Device 2"
+  },
+  {
+   "fieldname": "package_assigned",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Package Assigned",
+   "options": "Lak Package"
+  },
+  {
+   "fieldname": "customer_department",
+   "fieldtype": "Link",
+   "label": "Customer Department",
+   "options": "Customer Department"
+  },
+  {
+   "default": 0,
+   "fieldname": "balance_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Balance Total"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive"
+  }
+ ],
+ "module": "Planner",
+ "name": "Customer",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

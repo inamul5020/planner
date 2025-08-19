@@ -1,0 +1,60 @@
+{
+ "custom": 0,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "fields": [
+  {
+   "fieldname": "voucher_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Voucher Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "date_issue",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Issued"
+  },
+  {
+   "fieldname": "assigned_device1",
+   "fieldtype": "Data",
+   "label": "Assigned Device 1"
+  },
+  {
+   "fieldname": "assigned_device2",
+   "fieldtype": "Data",
+   "label": "Assigned Device 2"
+  },
+  {
+   "fieldname": "assigned_to_customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assigned To Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "assigned_by_staff",
+   "fieldtype": "Link",
+   "label": "Assigned By Staff",
+   "options": "User"
+  },
+  {
+   "default": "Available",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Available\nAssigned\nRedeemed\nExpired"
+  }
+ ],
+ "module": "Planner",
+ "name": "Voucher",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
