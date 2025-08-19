@@ -3,10 +3,10 @@ import os, json, frappe
 # ANSI Colors
 GREEN = "\033[92m"; YELLOW = "\033[93m"; RED = "\033[91m"; BLUE = "\033[94m"; RESET = "\033[0m"
 
-# IMPORTANT: Change this to 'planner' to match your app name
+# --- Configuration ---
 APP_NAME = "planner"
-APP_MODULE = "Planner" # Or your app's module name
-COMPANY_NAME = "YOUR COMPANY / NAME" # Replace with your company name
+APP_MODULE = "Planner" 
+COMPANY_NAME = "YOUR COMPANY / NAME"
 
 def log(msg, color=BLUE, logfile=None):
     print(f"{color}{msg}{RESET}")
@@ -35,6 +35,22 @@ def scaffold(app_path, config, force=False, dry_run=False, logfile=None):
 
     created, skipped = [], []
 
+    # --- NEW: Default Permissions for System Manager ---
+    default_permissions = [
+        {
+            "role": "System Manager",
+            "read": 1,
+            "write": 1,
+            "create": 1,
+            "delete": 1,
+            "print": 1,
+            "email": 1,
+            "report": 1,
+            "export": 1,
+            "share": 1
+        }
+    ]
+
     for name in config["order"]:
         safe_name = safe(name)
         folder = os.path.join(app_doctype_dir, safe_name)
@@ -46,14 +62,10 @@ def scaffold(app_path, config, force=False, dry_run=False, logfile=None):
         js_path   = os.path.join(folder, f"{safe_name}.js")
         test_path = os.path.join(folder, f"test_{safe_name}.py")
 
-        # Skip if exists and not forced
         if os.path.exists(json_path) and not force:
             skipped.append(name)
             continue
         
-        # --- Create File Content Based on Provided Examples ---
-
-        # Python Controller (.py) content
         py_content = f"""# Copyright (c) 2025, {COMPANY_NAME} and contributors
 # For license information, please see license.txt
 
@@ -65,7 +77,6 @@ class {pascal_case(name)}(Document):
 \tpass
 """
 
-        # JavaScript (.js) content
         js_content = f"""// Copyright (c) 2025, {COMPANY_NAME} and contributors
 // For license information, please see license.txt
 
@@ -76,7 +87,6 @@ class {pascal_case(name)}(Document):
 // }});
 """
 
-        # Python Test (test_...py) content
         test_content = f"""# Copyright (c) 2025, {COMPANY_NAME} and Contributors
 # See license.txt
 
@@ -97,7 +107,8 @@ class Test{pascal_case(name)}(IntegrationTestCase):
             "editable_grid": 1,
             "track_changes": 1,
             "fields": config["doctypes"][name].get("fields", []),
-            "permissions": config["doctypes"][name].get("permissions", []),
+            # --- MODIFIED: Use default_permissions if none are provided ---
+            "permissions": config["doctypes"][name].get("permissions", default_permissions),
             "sort_field": "modified",
             "sort_order": "DESC",
             "states": []
@@ -127,7 +138,7 @@ def run(force=False, dry_run=False, logfile=None):
     cfg_path = os.path.join(app_path, "doctypes.json")
 
     if not os.path.exists(cfg_path):
-        log("❌ doctypes.json not found", RED, logfile)
+        log(f"❌ doctypes.json not found in the '{APP_NAME}' app directory.", RED)
         return
 
     with open(cfg_path) as f:
