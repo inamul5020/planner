@@ -23,6 +23,7 @@
           "label": "Department Name",
           "fieldtype": "Data",
           "reqd": 1,
+          "unique": 1,  // <-- ADD THIS LINE
           "in_list_view": 1
         }
       ]
@@ -35,6 +36,7 @@
           "label": "Package Name",
           "fieldtype": "Data",
           "reqd": 1,
+          "unique": 1,  // <-- ADD THIS LINE
           "in_list_view": 1
         },
         {
@@ -61,6 +63,7 @@
           "label": "Customer Name",
           "fieldtype": "Data",
           "reqd": 1,
+          "unique": 1,  // <-- ADD THIS LINE
           "in_list_view": 1
         },
         {
