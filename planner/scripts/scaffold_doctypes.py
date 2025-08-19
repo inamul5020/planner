@@ -3,8 +3,9 @@ import os, json, frappe
 # ANSI Colors
 GREEN = "\033[92m"; YELLOW = "\033[93m"; RED = "\033[91m"; BLUE = "\033[94m"; RESET = "\033[0m"
 
-APP_NAME = "wifi_planner"
-APP_MODULE = "WiFi Planner"
+# IMPORTANT: Change this to 'planner' to match your app name
+APP_NAME = "planner"
+APP_MODULE = "Planner" # Or your app's module name
 COMPANY_NAME = "YOUR COMPANY / NAME" # Replace with your company name
 
 def log(msg, color=BLUE, logfile=None):
@@ -52,7 +53,7 @@ def scaffold(app_path, config, force=False, dry_run=False, logfile=None):
         
         # --- Create File Content Based on Provided Examples ---
 
-        # [cite_start]Python Controller (.py) content [cite: 14]
+        # Python Controller (.py) content
         py_content = f"""# Copyright (c) 2025, {COMPANY_NAME} and contributors
 # For license information, please see license.txt
 
@@ -64,7 +65,7 @@ class {pascal_case(name)}(Document):
 \tpass
 """
 
-        # [cite_start]JavaScript (.js) content [cite: 12]
+        # JavaScript (.js) content
         js_content = f"""// Copyright (c) 2025, {COMPANY_NAME} and contributors
 // For license information, please see license.txt
 
@@ -75,7 +76,7 @@ class {pascal_case(name)}(Document):
 // }});
 """
 
-        # [cite_start]Python Test (test_...py) content [cite: 15]
+        # Python Test (test_...py) content
         test_content = f"""# Copyright (c) 2025, {COMPANY_NAME} and Contributors
 # See license.txt
 
@@ -92,12 +93,11 @@ class Test{pascal_case(name)}(IntegrationTestCase):
             "name": name,
             "module": APP_MODULE,
             "custom": 0,
-            [cite_start]"engine": "InnoDB", # Added engine as per example [cite: 13]
+            "engine": "InnoDB",
             "editable_grid": 1,
             "track_changes": 1,
             "fields": config["doctypes"][name].get("fields", []),
             "permissions": config["doctypes"][name].get("permissions", []),
-            # Defaults to match Frappe standards
             "sort_field": "modified",
             "sort_order": "DESC",
             "states": []
