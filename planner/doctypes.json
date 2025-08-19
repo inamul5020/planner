@@ -54,6 +54,7 @@
       ]
     },
     "Customer": {
+       "autoname": "field:customer_name",
       "fields": [
         {
           "fieldname": "customer_name",
