@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Staffcashsubmissionitem(Document):
+class StaffCashSubmissionItem(Document):
 	pass

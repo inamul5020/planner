@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Monthlysummary(Document):
+class MonthlySummary(Document):
 	pass

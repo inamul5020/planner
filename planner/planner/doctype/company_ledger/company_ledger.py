@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Companyledger(Document):
+class CompanyLedger(Document):
 	pass

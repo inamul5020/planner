@@ -1,7 +1,7 @@
 {
  "actions": [],
- "allow_rename": 1,
- "creation": "2025-08-19 08:55:27.794253",
+ "autoname": "field:department_name",
+ "creation": "2025-08-19 14:45:59.891545",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -12,16 +12,18 @@
    "fieldname": "department_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Department Name"
+   "label": "Department Name",
+   "unique": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-19 09:04:41.966642",
+ "modified": "2025-08-19 14:49:23.076355",
  "modified_by": "Administrator",
  "module": "Planner",
  "name": "Customer Department",
+ "naming_rule": "Set by user",
  "owner": "Administrator",
  "permissions": [
   {
