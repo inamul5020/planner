@@ -46,7 +46,8 @@ def run(force=False, dry_run=False, logfile=None):
     app_doctype_dir = os.path.join(app_path, APP_NAME, "doctype")
     os.makedirs(app_doctype_dir, exist_ok=True)
 
-    created, updated, skipped = {"json": [], "py": [], "js": [], "test": []}, [], []
+    # --- THIS LINE IS FIXED ---
+    created, updated, skipped = {"json": [], "py": [], "js": [], "test": [], "init": []}, [], []
 
     default_permissions = [{"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 1, "print": 1, "email": 1, "report": 1, "export": 1, "share": 1}]
 
@@ -111,7 +112,7 @@ class Test{pascal_case(name)}(IntegrationTestCase):
             if doctype_config.get("istable"): spec["istable"] = 1
             write_file(paths["json"], json.dumps(spec, indent=1, sort_keys=True), dry_run)
             created["json"].append(name)
-            log(f"  ✅ Created {safe_name}.json", GREEN)
+            log(f"  ✅ Created {os.path.basename(paths['json'])}", GREEN)
         else:
             with open(paths["json"], 'r+') as f:
                 existing_spec = json.load(f)
@@ -121,7 +122,7 @@ class Test{pascal_case(name)}(IntegrationTestCase):
                     f.truncate()
                     json.dump(existing_spec, f, indent=1, sort_keys=True)
                     updated.append(name)
-                    log(f"  🔄 Updated permissions in {safe_name}.json", YELLOW)
+                    log(f"  🔄 Updated permissions in {os.path.basename(paths['json'])}", YELLOW)
 
         # 2. Handle the supporting files (py, js, test, init)
         # Create them if they are missing OR empty
@@ -136,4 +137,5 @@ class Test{pascal_case(name)}(IntegrationTestCase):
     log(f"JSON Files Created: {len(created['json'])}", GREEN)
     log(f"Python Files Created: {len(created['py'])}", GREEN)
     log(f"JS Files Created: {len(created['js'])}", GREEN)
+    log(f"__init__.py Files Created: {len(created['init'])}", GREEN)
     log(f"Permissions Updated: {len(updated)}", YELLOW)
