@@ -19,7 +19,8 @@ def seed_customer_departments():
     ]
 
     for dept in departments:
-        if not frappe.db.exists("Customer Department", dept["department_name"]):
+        # CORRECTED: Check against the specific field 'department_name'
+        if not frappe.db.exists("Customer Department", {"department_name": dept["department_name"]}):
             doc = frappe.get_doc({
                 "doctype": "Customer Department",
                 "department_name": dept["department_name"]
@@ -39,7 +40,8 @@ def seed_lak_packages():
     ]
 
     for pkg in packages:
-        if not frappe.db.exists("Lak Package", pkg["package_name"]):
+        # CORRECTED: Check against the specific field 'package_name'
+        if not frappe.db.exists("Lak Package", {"package_name": pkg["package_name"]}):
             doc = frappe.get_doc({
                 "doctype": "Lak Package",
                 "package_name": pkg["package_name"],
@@ -66,12 +68,13 @@ def seed_customers():
     ]
 
     for cust in customers:
-        if not frappe.db.exists("Customer", cust["customer_name"]):
-            # Check if dependencies exist before trying to create the customer
-            if not frappe.db.exists("Lak Package", cust["package_assigned"]):
+        # CORRECTED: Check against the specific field 'customer_name'
+        if not frappe.db.exists("Customer", {"customer_name": cust["customer_name"]}):
+            # CORRECTED: Check dependencies against the specific field
+            if not frappe.db.exists("Lak Package", {"package_name": cust["package_assigned"]}):
                 log(f"  ❌ Failed: Lak Package '{cust['package_assigned']}' not found. Skipping customer '{cust['customer_name']}'.", RED)
                 continue
-            if not frappe.db.exists("Customer Department", cust["customer_department"]):
+            if not frappe.db.exists("Customer Department", {"department_name": cust["customer_department"]}):
                 log(f"  ❌ Failed: Customer Department '{cust['customer_department']}' not found. Skipping customer '{cust['customer_name']}'.", RED)
                 continue
                 
@@ -87,16 +90,18 @@ def run():
     log("="*40, BLUE)
     log("Starting Data Seeding...", BLUE)
     
-    # The "Chain of Order" is critical here.
-    # We must create the records that other records depend on first.
-    
     # 1. Masters (No dependencies)
     seed_customer_departments()
     seed_lak_packages()
     
+    # ADDED: Commit the master data to the database before proceeding
+    frappe.db.commit()
+    log("Master data committed.", BLUE)
+    
     # 2. Documents with dependencies
     seed_customers()
     
+    # Final commit for any remaining changes
     frappe.db.commit()
     log("Data seeding complete!", BLUE)
     log("="*40, BLUE)
