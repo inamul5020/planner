@@ -16,6 +16,7 @@
   ],
   "doctypes": {
     "Customer Department": {
+      "autoname": "field:department_name",
       "fields": [
         {
           "fieldname": "department_name",
@@ -27,6 +28,7 @@
       ]
     },
     "Lak Package": {
+      "autoname": "field:package_name",
       "fields": [
         {
           "fieldname": "package_name",
